@@ -1,0 +1,114 @@
+:root {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --button-bg: #1e1e1e;
+    --button-hover: #333333;
+    --accent: #00bfa6;
+  }
+
+  body.light {
+    --bg-color: #f5f5f5;
+    --text-color: #000000;
+    --button-bg: #e0e0e0;
+    --button-hover: #cccccc;
+    --accent: #00796b;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+
+  .calculator {
+    background: var(--button-bg);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    max-width: 320px;
+    width: 90%;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .display {
+    background: var(--bg-color);
+    border: none;
+    width: 100%;
+    color: var(--text-color);
+    font-size: 2rem;
+    text-align: right;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  button {
+    padding: 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--button-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform 0.1s ease, background 0.2s ease;
+  }
+
+  button:hover {
+    background: var(--button-hover);
+    transform: scale(1.05);
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+
+  .equal {
+    background: var(--accent);
+    color: white;
+  }
+
+  .toggle-mode {
+    margin-bottom: 15px;
+    background: var(--accent);
+    color: #fff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .toggle-mode:hover {
+    transform: scale(1.05);
+    background: var(--button-hover);
+  }
+
+  .toggle-mode:active {
+    transform: scale(0.95);
+  }
+
+  /* Small bounce animation for mode switch */
+  @keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+
+  body.light, body.dark {
+    animation: bounce 0.4s ease;
+}
