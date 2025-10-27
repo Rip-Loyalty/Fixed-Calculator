@@ -1,85 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        NovaCalc
-    </title>
-
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="NovaCalc.png"> -->
-    <!-- <link rel="icon" type="image/png" sizes="192x192" href="NovaCalc.png"> -->
-    <!-- <link rel="apple-touch-icon" href="NovaCalc.png"> -->
-    <link rel="icon" type="image/png" href="NovaCalc.png">
-    <link rel="stylesheet" href="NovaCalc.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NovaCalc</title>
+<link rel="icon" type="image/png" href="NovaCalc.png">
+<link rel="stylesheet" href="NovaCalc.css">
 </head>
+<body>
 
-<body class="dark">
+<button class="toggle-theme" id="themeToggle">🌙</button>
 
-  <button class="toggle-mode" id="toggleMode">Toggle Light/Dark</button>
+<h1>NovaCalc</h1>
+<div class="calculator">
+  <input type="text" id="display" disabled />
 
-  <div class="calculator">
-    <input type="text" class="display" id="display" readonly />
+  <div class="buttons">
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="deleteChar()">DEL</button>
+    <button onclick="appendOperator('%')">%</button>
+    <button onclick="appendOperator('/')">÷</button>
 
-    <div class="buttons">
-      <button onclick="clearDisplay()">C</button>
-      <button onclick="deleteLast()">DEL</button>
-      <button onclick="appendValue('%')">%</button>
-      <button onclick="appendValue('/')">÷</button>
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="appendOperator('*')">×</button>
 
-      <button onclick="appendValue('7')">7</button>
-      <button onclick="appendValue('8')">8</button>
-      <button onclick="appendValue('9')">9</button>
-      <button onclick="appendValue('*')">×</button>
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="appendOperator('-')">−</button>
 
-      <button onclick="appendValue('4')">4</button>
-      <button onclick="appendValue('5')">5</button>
-      <button onclick="appendValue('6')">6</button>
-      <button onclick="appendValue('-')">−</button>
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="appendOperator('+')">+</button>
 
-      <button onclick="appendValue('1')">1</button>
-      <button onclick="appendValue('2')">2</button>
-      <button onclick="appendValue('3')">3</button>
-      <button onclick="appendValue('+')">+</button>
-
-      <button onclick="appendValue('0')">0</button>
-      <button onclick="appendValue('.')">.</button>
-      <button onclick="calculate()" class="equal">=</button>
-    </div>
+    <button onclick="appendNumber('0')" style="grid-column: span 2;">0</button>
+    <button onclick="appendDot()">.</button>
+    <button onclick="calculate()">=</button>
   </div>
+</div>
 
-    <script>
-        const display = document.getElementById("display");
-        const toggleBtn = document.getElementById("toggleMode");
-        const body = document.body;
+<a href="todo.html" class="todo-link">🧾 Open To-Do List</a>
 
-        function appendValue(value) {
-        display.value += value;
-        }
+<script>
+  const display = document.getElementById("display");
+  const themeToggle = document.getElementById("themeToggle");
 
-        function clearDisplay() {
-        display.value = "";
-        }
+  function appendNumber(num) {
+    display.value += num;
+  }
 
-        function deleteLast() {
-        display.value = display.value.slice(0, -1);
-        }
+  function appendOperator(op) {
+    display.value += " " + op + " ";
+  }
 
-        function calculate() {
-        try {
-            display.value = eval(display.value.replace("÷", "/").replace("×", "*"));
-        } catch {
-            display.value = "Error";
-        }
-        } 
+  function appendDot() {
+    display.value += ".";
+  }
 
-        toggleBtn.addEventListener("click", () => {
-        body.classList.toggle("light");
-        });
-    </script>
-  
-  
+  function clearDisplay() {
+    display.value = "";
+  }
 
+  function deleteChar() {
+    display.value = display.value.slice(0, -1);
+  }
+
+  function calculate() {
+    try {
+      display.value = eval(display.value.replace(/÷/g, "/").replace(/×/g, "*"));
+    } catch {
+      display.value = "Error";
+    }
+  }
+
+  // Theme Toggle
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    themeToggle.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+    localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+  });
+
+  // Load saved theme
+  if (localStorage.getItem("theme") === "light") {
+    document.body.classList.add("light");
+    themeToggle.textContent = "☀️";
+  }
+</script>
 
 </body>
 </html>

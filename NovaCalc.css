@@ -1,53 +1,74 @@
-:root {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --button-bg: #1e1e1e;
-    --button-hover: #333333;
+  :root {
+    --bg: #121212;
+    --text: #fff;
     --accent: #00bfa6;
+    --btn-bg: #1e1e1e;
+    --btn-hover: #2a2a2a;
   }
 
   body.light {
-    --bg-color: #f5f5f5;
-    --text-color: #000000;
-    --button-bg: #e0e0e0;
-    --button-hover: #cccccc;
-    --accent: #00796b;
+    --bg: #f2f2f2;
+    --text: #121212;
+    --btn-bg: #eaeaea;
+    --btn-hover: #ddd;
   }
 
   body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background: var(--bg);
+    color: var(--text);
     font-family: "Poppins", sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    justify-content: flex-start;
+    min-height: 100vh;
     margin: 0;
-    transition: background 0.4s ease, color 0.4s ease;
+    padding: 20px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  h1 {
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .toggle-theme {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .toggle-theme:hover {
+    background: var(--btn-hover);
   }
 
   .calculator {
-    background: var(--button-bg);
-    border-radius: 20px;
+    background: var(--btn-bg);
     padding: 20px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
-    max-width: 320px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 191, 166, 0.3);
+    max-width: 340px;
     width: 90%;
-    transition: background 0.4s ease, box-shadow 0.4s ease;
   }
 
-  .display {
-    background: var(--bg-color);
-    border: none;
+  input {
     width: 100%;
-    color: var(--text-color);
-    font-size: 2rem;
-    text-align: right;
-    padding: 10px;
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
     border-radius: 10px;
-    margin-bottom: 15px;
-    transition: background 0.3s ease, color 0.3s ease;
+    margin-bottom: 10px;
+    background: var(--bg);
+    color: var(--text);
+    text-align: right;
   }
 
   .buttons {
@@ -61,54 +82,31 @@
     font-size: 1.1rem;
     border: none;
     border-radius: 10px;
-    background: var(--button-bg);
-    color: var(--text-color);
+    background: var(--accent);
+    color: white;
     cursor: pointer;
-    transition: transform 0.1s ease, background 0.2s ease;
+    transition: transform 0.2s, background 0.3s;
   }
 
   button:hover {
-    background: var(--button-hover);
+    background: var(--btn-hover);
     transform: scale(1.05);
   }
 
-  button:active {
-    transform: scale(0.95);
-  }
-
-  .equal {
-    background: var(--accent);
-    color: white;
-  }
-
-  .toggle-mode {
-    margin-bottom: 15px;
-    background: var(--accent);
-    color: #fff;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 8px;
+  .todo-link {
+    margin-top: 30px;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    padding: 10px 20px;
+    border-radius: 10px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
     font-weight: 500;
-    transition: background 0.3s ease, transform 0.2s ease;
   }
 
-  .toggle-mode:hover {
-    transform: scale(1.05);
-    background: var(--button-hover);
+  .todo-link:hover {
+    background: var(--accent);
+    color: var(--text);
   }
-
-  .toggle-mode:active {
-    transform: scale(0.95);
-  }
-
-  /* Small bounce animation for mode switch */
-  @keyframes bounce {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-  }
-
-  body.light, body.dark {
-    animation: bounce 0.4s ease;
-}
